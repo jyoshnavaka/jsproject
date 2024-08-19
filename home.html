@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #div {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #div img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .div2 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            z-index: 1; 
+        }
+    </style>
+</head>
+<body>
+   <div id="div">
+        <img src="https://images.pexels.com/photos/1233648/pexels-photo-1233648.jpeg?auto=compress&cs=tinysrgb&w=600">
+        <img src="https://images.pexels.com/photos/8386639/pexels-photo-8386639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+        <div class="div2">
+            <h2 style="color: #004d00;">Modern Prep</h2>
+            <h1 style="color: #004d00;">WELCOME to JV</h1>
+        </div>
+   </div> 
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #signup {
+            position: absolute; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 500px;
+            margin: 35px;
+        }
+        .input1 {
+            width: 100%;
+            height: 35px;
+            margin: 5px 0;
+            font-size: medium;
+            border: 1px solid #ccc; 
+            padding: 5px; 
+            box-sizing: border-box; 
+        }
+        label {
+            margin: 5px 0;
+            font-size: large;
+        }
+        input[type="checkbox"] {
+            width: auto;
+            margin: 0 5px 0 0;
+        }
+        .checkbox-label {
+            display: inline-block;
+            margin: 5px 0;
+            font-size: medium;
+        }
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .submit-btn {
+            text-align: center;
+            width: 100%;
+            color: white;
+            background-color: black;
+            border: none;
+            cursor: pointer;
+        }
+        .member-btn {
+            text-align: center;
+            width: 100%;
+            color: black;
+            background-color: white;
+            border: 1px solid black;
+            cursor: pointer; 
+        }
+        #member {
+            color: white;
+            background-color: #004d00;
+        }
+        .border {
+            outline: 0;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body  style="background-color: rgb(243, 240, 208);">
+    <div id="signup">
+        <center><h2>Become an JV member</h2></center>
+        <form id="signupForm" style="margin: 10px;">
+            <label for="email">Email:</label><br>
+            <input id="email" type="email" required class="input1"><br>
+            <span id="emailspan"></span>
+            <br>
+            <label for="password">Create a Password:</label>
+            <br>
+            <input id="password" type="password" required class="input1">
+            <br>
+            <span id="span"></span>
+            <br>
+            <input type="button" value="Become an JV Member" class="input1 member-btn" id="member">
+            <center><a href="./login.html" style="text-align: center; color: black;">Back to Sign in</a></center>
+        </form>
+    </div>
+    <script>
+        var arr = [];
+
+        document.getElementById("member").addEventListener("click", function () {
+            var emailInput = document.getElementById("email");
+            var passwordInput = document.getElementById("password");
+            var emailSpan = document.getElementById("emailspan");
+            var passwordSpan = document.getElementById("span");
+            
+            var email = emailInput.value;
+            var password = passwordInput.value;
+
+            var passValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[*@%!#]).{8,16}$/;
+
+            var userExists = arr.some(user => user.email === email);
+
+            if (userExists) {
+                emailInput.classList.add("border");
+                emailSpan.innerText = "User is already registered";
+                emailSpan.style.color = "red";
+                return;
+            } else {
+                emailInput.classList.remove("border");
+                emailSpan.innerText = "";
+            }
+
+            if (!passValid.test(password)) {
+                passwordInput.classList.add("border");
+                passwordSpan.innerText = "Enter Valid Password";
+                passwordSpan.style.color = "red";
+                return;
+            } else {
+                passwordInput.classList.remove("border");
+                passwordSpan.innerText = "";
+            }
+
+            arr.push({ email: email, password: password });
+            console.log(arr);
+            localStorage.setItem("signup",JSON.stringify(arr))
+        });
+    </script>
+</body>
+</html>

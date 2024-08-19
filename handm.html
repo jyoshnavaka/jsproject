@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>H&M Page</title>
+  <style>
+    .nav-link {
+      color: black;
+      text-decoration: none;
+    }
+
+    .nav-item {
+      margin-right: 15px; 
+    }
+
+    .navbar-brand img {
+      height: 70px;
+    }
+
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-col {
+      padding: 0 10px; 
+    }
+
+    .footer-col h5 {
+      margin-bottom: 15px; 
+    }
+
+    .footer-col p {
+      margin: 5px 0; 
+    }
+
+    @media (max-width: 1000px) {
+      .footer-col {
+        display: none;
+      }
+   
+    }
+
+    #dropdown-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background: rgba(227, 226, 225, 0.953);
+    position: absolute;
+    top: 30px;
+    right: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+  }
+
+  #dropdown-menu li {
+    margin: 0;
+  }
+
+  #dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: black;
+    text-decoration: none;
+  }
+
+  #dropdown-menu li a:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  #search-form-container {
+    padding: 10px 15px;
+  }
+
+  #search-form {
+    display: flex;
+    gap: 5px;
+  }
+
+  #search-form input[type="search"] {
+    width: calc(100% - 80px); /* Adjust width considering the button's width */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  #search-form button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #search-form button:hover {
+    background-color: #0056b3;
+  }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="https://www.logolynx.com/images/logolynx/ad/ad9ff5b86ef8d0bace5b9ff50840ad73.png" alt="jv Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse justify-content-end divnav2" id="navbarNavAltMarkup">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="./login.html"><i class="bi bi-person me-1"></i>Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./favourites.html"><i class="bi bi-heart me-1"></i>Favourites</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./addToCart.html"><i class="bi bi-bag me-1"></i>Shopping Bag</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./search.html"><i class="bi bi-search p-3"></i>search</a>
+        </li>
+      </ul>
+    </div>
+   
+  </nav>
+  <div class="d-flex justify-content-center">
+    <ul class="navbar-nav d-flex flex-row list-unstyled mb-0">
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="#" id="mens">MENS</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="#" id="womens">WOMENS</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="home.html" id="home">JV HOME</a>
+        </li>
+        <li class="nav-item mx-2">
+            <a class="nav-link" href="#" id="kids">KIDS</a>
+        </li>
+    </ul>
+</div>
+  <iframe id="iframe" style="width: 100%; height:1000px; border: none;"></iframe>
+
+  <footer class="text-white pt-5 pb-4" style="background-color: rgba(227, 226, 225, 0.953);">
+    <div class="container text-center text-md-left">
+      <div class="row text-left">
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 footer-col">
+          <h5 class="text-uppercase mb-4 font-weight-bold text-dark">SHOP</h5>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Ladies</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Men</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Kids</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">JV HOME</a></p>
+        </div>
+
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 footer-col">
+          <h5 class="text-uppercase mb-4 font-weight-bold text-dark">CORPORATE INFO</h5>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Career at JV</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">About JV</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Sustainability JV Group</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Press</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Investor relations</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Corporate governance</a></p>
+        </div>
+
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3 footer-col">
+          <h5 class="text-uppercase mb-4 font-weight-bold text-dark">HELP</h5>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Customer Service</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">MY JV</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Find a store</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Legal & Privacy</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Contact</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Report a scam</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Cookie Notice</a></p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Cookie Setting</a></p>
+        </div>
+
+        <div class="col-md-4 col-lg-2 col-xl-2 mx-auto mt-3 footer-col">
+          <p class="text-dark">Sign up now and be the first to know about exclusive offers, latest fashion news & style tips!</p>
+          <p><a href="#" class="text-dark" style="text-decoration: none;">Read more <i class="bi bi-arrow-right"></i></a></p>
+        </div>
+      </div>
+
+      <div class="row align-items-center">
+        <div class="container text-center">
+          <ul class="list-unstyled list-inline" style="font-size: 20px;">
+            <li class="list-inline-item m-2">
+              <a href="#" aria-label="Instagram" style="color: black;">
+                <i class="bi bi-instagram"></i>
+              </a>
+            </li>
+            <li class="list-inline-item m-2">
+              <a href="#" aria-label="TikTok" style="color: black;">
+                <i class="bi bi-tiktok"></i>
+              </a>
+            </li>
+            <li class="list-inline-item m-2">
+              <a href="#" aria-label="YouTube" style="color: black;">
+                <i class="bi bi-youtube"></i>
+              </a>
+            </li>
+            <li class="list-inline-item m-2">
+              <a href="#" aria-label="Pinterest" style="color: black;">
+                <i class="bi bi-pinterest"></i>
+              </a>
+            </li>
+            <li class="list-inline-item m-2">
+              <a href="#" aria-label="Facebook" style="color: black;">
+                <i class="bi bi-facebook"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row align-items-center">
+        <div class="container text-center">
+          <p class="text-dark" style="font-size: smaller;">The content of this site is copyright-protected and is the property of JV Hennes & Mauritz AB</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="container text-center">
+          <p class="text-dark" style="font-size: smaller;">
+            <img src="https://www.logolynx.com/images/logolynx/ad/ad9ff5b86ef8d0bace5b9ff50840ad73.png" width="50px" height="50px" alt="H&M Logo">
+          </p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="container text-center">
+          <h5 class="text-dark">INDIA | Rs.</h5>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // const url = 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list';
+    // const options = {
+    //   method: 'GET',
+    //   headers: {
+    //     'x-rapidapi-key': 'a8bfbfb885mshdb4ae800e5ef04bp13259ejsn6e17985f7c72',
+    //     'x-rapidapi-host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+    //   }
+    // };
+
+    let mens = [];
+    let womens = [];
+    let kids = [];
+
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("iframe").src = "./home.html";
+    });
+
+    async function fetchProducts() {
+      try {
+        const response = await fetch(url, options);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        const products = result.results;
+        localStorage.setItem("products", JSON.stringify(products));
+        if (!products) {
+          throw new Error('No products found');
+        }
+
+        products.forEach(product => {
+          if (product.categoryName === "Men") {
+            mens.push(product);
+          } else if (product.categoryName === "Ladies") {
+            womens.push(product);
+          } else if (product.categoryName === "Kids") {
+            kids.push(product);
+          }
+        });
+
+        document.getElementById("mens").addEventListener("click", function () {
+          localStorage.setItem("m", JSON.stringify(mens));
+          document.getElementById("iframe").src = "display.html";
+        });
+
+        document.getElementById("womens").addEventListener("click", function () {
+          localStorage.setItem("m", JSON.stringify(womens));
+          document.getElementById("iframe").src = "display.html";
+        });
+
+        document.getElementById("kids").addEventListener("click", function () {
+          localStorage.setItem("m", JSON.stringify(kids));
+          document.getElementById("iframe").src = "display.html";
+        });
+
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    }
+
+    fetchProducts();
+
+    document.querySelector(".navbar-toggler").addEventListener("click", function() {
+      var ul = document.getElementById("dropdown-menu");
+      if (!ul) {
+        ul = document.createElement("ul");
+        ul.setAttribute("id", "dropdown-menu");
+
+        var items = [
+          { text: "Sign in", href: "./login.html" },
+          { text: "Favourites", href: "./favourites.html" },
+          { text: "Shopping bag", href: "./addToCart.html" },
+          { text: "Search", href: "./search.html" }
+        ];
+
+        items.forEach(item => {
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          a.innerText = item.text;
+          a.href = item.href;
+          li.appendChild(a);
+          ul.appendChild(li);
+        });
+
+        document.body.appendChild(ul);
+      }
+
+      ul.style.display = (ul.style.display === 'block') ? 'none' : 'block';
+    });
+
+    document.body.addEventListener("click", function(event) {
+      if (!event.target.closest(".navbar-toggler") && document.getElementById("dropdown-menu")) {
+        document.getElementById("dropdown-menu").style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

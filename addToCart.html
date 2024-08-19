@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div {
+            display: flex;
+            flex-wrap: wrap;
+           
+        }
+        .product {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 200px;
+            background-color: white;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+        button {
+            color: white;
+            background-color: black;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        body{
+            background-image: url("https://images.pexels.com/photos/25391479/pexels-photo-25391479/free-photo-of-balls-in-a-shopping-cart.jpeg?auto=compress&cs=tinysrgb&w=600");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">SHOPPING BAG</h1>
+    <div id="div"></div>
+    <script>
+        var shop = JSON.parse(localStorage.getItem("add")) || [];
+        var shop1 = JSON.parse(localStorage.getItem("add1")) || [];
+
+        
+        var combined = shop.concat(shop1.filter(item1 => !shop.some(item => item.name === item1.name)));
+
+        localStorage.setItem("add", JSON.stringify(combined));
+
+        var products = combined;
+
+        if (products.length > 0) {
+            products.forEach(element => {
+                var img = document.createElement("img");
+                if (element.images && element.images[0]) {
+                    img.src = element.images[0].url;
+                } else {
+                    img.src = 'default-image.jpg'; 
+                }
+                img.alt = element.name;
+                img.addEventListener("click", function() {
+                    localStorage.setItem("image", JSON.stringify(element.galleryImages));
+                    localStorage.setItem("data1", JSON.stringify(element));
+                    window.location.assign("./images.html");
+                });
+
+                var h3 = document.createElement("h3");
+                h3.innerText = element.name;
+
+                var p = document.createElement("p");
+                var priceInINR = (parseFloat(element.price.value) * 83.77).toFixed(2); 
+                p.innerText = `Price: ₹${priceInINR}`;
+
+                var peace = document.createElement("h4");
+                if (element.numberOfPieces > 0) {
+                    peace.innerText = `Find in store`;
+                } else {
+                    peace.innerText = `Not available in stores`;
+                }
+
+                var but = document.createElement("button");
+                but.innerText = "Add to Cart";
+                but.addEventListener("click", function() {
+                    var add = JSON.parse(localStorage.getItem("add")) || [];
+                    if (!add.some(product => product.name === element.name)) {
+                        add.push(element);
+                        localStorage.setItem("add", JSON.stringify(add));
+                    }
+                });
+
+                var productDiv = document.createElement("div");
+                productDiv.className = "product";
+                productDiv.appendChild(img);
+                productDiv.appendChild(h3);
+                productDiv.appendChild(p);
+                productDiv.appendChild(peace);
+                productDiv.appendChild(but);
+
+                var div = document.getElementById("div");
+                div.appendChild(productDiv);
+            });
+        } else {
+            console.log('No products found in localStorage');
+        }
+    </script>
+</body>
+</html>

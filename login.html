@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #signup {
+            position: absolute; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 500px;
+            margin: 35px;
+        }
+        .input1 {
+            width: 100%;
+            height: 35px;
+            margin: 5px 0;
+            font-size: medium;
+            border: 1px solid #ccc; 
+            padding: 5px; 
+            box-sizing: border-box; 
+        }
+        label {
+            margin: 5px 0;
+            font-size: large;
+        }
+        input[type="checkbox"] {
+            width: auto;
+            margin: 0 5px 0 0;
+        }
+        .checkbox-label {
+            display: inline-block;
+            margin: 5px 0;
+            font-size: medium;
+        }
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .form-footer a {
+            color: black;
+            font-size: 17px;
+            text-decoration: none; 
+        }
+        .form-footer a:hover {
+            text-decoration: underline; 
+        }
+        .submit-btn {
+            text-align: center;
+            width: 100%;
+            color: white;
+            background-color: #004d00;
+            border: none;
+            cursor: pointer; 
+        }
+        .member-btn {
+            text-align: center;
+            width: 100%;
+            color: black;
+            background-color: white;
+            border: 1px solid black;
+            cursor: pointer; 
+        }
+       
+    </style>
+</head>
+<body style="background-color: rgb(240, 238, 208);">
+ 
+    <div id="signup">
+        <center><h2 >Sign in</h2></center>
+        <form style="margin: 10px;">
+          
+            <label for="email">Email:</label><br>
+            <input id="email" type="email" required class="input1"><br>
+            <label for="password">Password:</label><br>
+            <input id="password" type="password" required class="input1"><br>
+            
+            <div class="form-footer">
+                <div>
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me" class="checkbox-label">Remember me</label>
+                </div>
+                <a href="#">Forget Password</a>
+            </div>
+            
+            <input type="submit" value="SIGN IN" class="input1 submit-btn" id="sign"><br>
+            <input type="button" value="Become an JV Member" class="input1 member-btn" id="member">
+        </form>
+    </div>
+    <script>
+      
+      
+        document.getElementById("member").addEventListener("click",function(){
+            window.location.assign("./signup.html")
+        })
+        document.getElementById("sign").addEventListener("click",function(){
+            var a=document.getElementById("email").value;
+            var   b=document.getElementById("password").value;
+           obj={}
+           
+           obj.email=a;
+           obj.password=b;
+           var login=JSON.parse(localStorage.getItem("signup")) 
+           c=0
+           login.forEach((val)=>{
+            if(val.email==obj.email){
+                if(val.password==obj.password){
+                    alert("login successfully")
+                }
+            }
+            else{
+                c++;
+            }
+        
+           })
+           if(c==login.length)
+           alert("invalid details")
+           console.log(login);
+        })
+    </script>
+</body>
+</html>

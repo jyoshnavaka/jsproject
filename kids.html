@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H&M Products by Category</title>
+    <style>
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .product {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        .product img {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+        }
+        .color-div {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            display: inline-block;
+        }
+        .category-container {
+            margin-bottom: 50px;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="category-container">
+        <h2>Men</h2>
+        <div class="image-container" id="men-container"></div>
+    </div>
+    <div class="category-container">
+        <h2>Women</h2>
+        <div class="image-container" id="women-container"></div>
+    </div>
+    <div class="category-container">
+        <h2>Kids</h2>
+        <div class="image-container" id="kids-container"></div>
+    </div>
+
+    <script>
+        const url = 'https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list';
+        const headers = {
+            'X-RapidAPI-Key': '59868953ccmsh9d8f75594dad778p13fc09jsn35725cf3ee2f',
+            'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+        };
+
+        const fetchWithRetry = async (url, options, retries = 3, delay = 1000) => {
+            try {
+                const response = await fetch(url, options);
+                if (response.status === 429 && retries > 0) {
+                    await new Promise(res => setTimeout(res, delay));
+                    return fetchWithRetry(url, options, retries - 1, delay * 2);
+                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return response.json();
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                throw error;
+            }
+        };
+
+        fetchWithRetry(url, { method: 'GET', headers })
+        .then(data => {
+            const products = data.results;
+            console.log(products);
+
+            const menContainer = document.getElementById('men-container');
+            const womenContainer = document.getElementById('women-container');
+            const kidsContainer = document.getElementById('kids-container');
+
+            products.forEach((product, index) => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                const img = document.createElement('img');
+                if (product.images && product.images.length > 0) {
+                    img.setAttribute('src', product.images[0].url);
+                    productDiv.appendChild(img);
+                    img.addEventListener('click', function() {
+                        localStorage.setItem('image', JSON.stringify(product.galleryImages));
+                        localStorage.setItem("data1", JSON.stringify(products[index]))
+                        window.location.assign('./images.html');
+                    });
+                }
+
+                const category = document.createElement('p');
+                category.innerText = product.categoryName ? product.categoryName : 'No category';
+                productDiv.appendChild(category);
+                if (product.rgbColors) {
+                    product.rgbColors.forEach(color => {
+                        const colorDiv = document.createElement('div');
+                        colorDiv.className = 'color-div';
+                        colorDiv.style.backgroundColor = color;
+                        productDiv.appendChild(colorDiv);
+                    });
+                }
+
+                if (product.categoryName.toLowerCase() === 'men') {
+                    menContainer.appendChild(productDiv);
+                } else if (product.categoryName.toLowerCase() === 'ladies') {
+                    womenContainer.appendChild(productDiv);
+                } else if (product.categoryName.toLowerCase() === 'kids') {
+                    kidsContainer.appendChild(productDiv);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    </script>
+</body>
+</html>
